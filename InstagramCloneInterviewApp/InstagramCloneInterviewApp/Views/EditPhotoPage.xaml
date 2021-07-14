@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InstagramCloneInterviewApp.Views.EditPhotoPage"
+             Title="Edit">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Save" Command="{Binding LoadEditPhotoSaveCommand}"  Order="Primary" Priority="1" Text="Save"  />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="10" Orientation="Vertical">
+            <Image x:Name="imageOriginal" Source="{Binding SelectedPhoto.Url}" Aspect="AspectFit">
+            </Image>
+            <Label Text="Title:" FontSize="Body" FontAttributes="Bold"></Label>
+            <Entry Text="{Binding SelectedPhoto.Title}"></Entry>
+            <Button  BackgroundColor="#D9DDDC" TextColor="#3498DB" Text="Upload Image" Clicked="SelectImageFromLibraryButton"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

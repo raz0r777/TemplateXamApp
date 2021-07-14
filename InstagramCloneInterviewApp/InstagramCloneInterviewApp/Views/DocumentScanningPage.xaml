@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InstagramCloneInterviewApp.Views.DocumentScanningPage"
+             Title="Scan Document">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Padding="10" Grid.Row="0">
+                <Button BackgroundColor="#006BE6" TextColor="White"  CornerRadius="10" Text="SCAN DOCUMENT" Clicked="ScanDocumentButtonClicked"></Button>
+            </StackLayout>
+            <ListView x:Name="listViewImages" ItemsSource="{Binding ScannedImages}" Margin="5,5,5,5"  Grid.Row="1" HasUnevenRows="True" VerticalScrollBarVisibility="Always" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Image Source="{Binding ImageData, Converter={StaticResource MyByteToImageSourceConverter}}" Aspect="AspectFit" HeightRequest="300" WidthRequest="300"></Image>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

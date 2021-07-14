@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InstagramCloneInterviewApp.MainPage"
+             x:Name="CurrentPage"
+             Title="Home">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="New" Command="{Binding LoadAddNewPhotoCommand}"  Order="Primary" Priority="1" Text="New"  />
+        <ToolbarItem Name="New" Command="{Binding LoadDocumentScanning}"  Order="Primary" Priority="1" Text="Scan"  />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout>
+                <RefreshView IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+                 Command="{Binding LoadRefreshCommand}">
+                    <CollectionView ItemsSource="{Binding Photos}"  SelectionMode="Single" SelectionChangedCommand="{Binding LoadSelectedPhotoCommand}"  SelectedItem="{Binding SelectedPhoto}" RemainingItemsThreshold="{Binding CounterData}" RemainingItemsThresholdReachedCommand="{Binding LoadNewPhotosCommand}" >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="0,10,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions >
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="5"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Margin="5,0,0,0" Aspect="AspectFit" HeightRequest="80" Source="{Binding ThumbnailUrl}" Grid.Row="0"  Grid.Column="0"></Image>
+                                    <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="1"></Label>
+                                    <BoxView HeightRequest="1" Color="AliceBlue" Grid.Row="1" Grid.ColumnSpan="2"></BoxView>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                <Frame IsVisible="{Binding IsBusy}" BorderColor="#3498DB" HasShadow="False" BackgroundColor="#eeeeee">
+                    <StackLayout>
+                        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Center"></ActivityIndicator>
+                        <Label TextColor="#3498DB" Text="Loading Data, Please Wait..." HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding IsBusy}"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

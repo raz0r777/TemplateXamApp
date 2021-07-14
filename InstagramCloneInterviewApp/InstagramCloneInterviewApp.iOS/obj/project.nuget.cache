@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "dV+N19A+jhOp4aVweL4PVRqhR4j2GmsFZF1IYLgTSKLeBFyKVxuc+Li3+DMBuUTa8rVpVykswsQqPIJCgvXLqQ==",
+  "success": true,
+  "projectFilePath": "D:\\InstagramCloneApp\\InstagramCloneInterviewApp\\InstagramCloneInterviewApp\\InstagramCloneInterviewApp.iOS\\InstagramCloneInterviewApp.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\AU000N19\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\AU000N19\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\AU000N19\\.nuget\\packages\\webp.touch\\1.0.8\\webp.touch.1.0.8.nupkg.sha512",
+    "C:\\Users\\AU000N19\\.nuget\\packages\\xam.plugin.connectivity\\3.2.0\\xam.plugin.connectivity.3.2.0.nupkg.sha512",
+    "C:\\Users\\AU000N19\\.nuget\\packages\\xam.plugin.media\\5.0.1\\xam.plugin.media.5.0.1.nupkg.sha512",
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
+    "C:\\Users\\AU000N19\\.nuget\\packages\\xamarin.ffimageloading\\2.4.11.982\\xamarin.ffimageloading.2.4.11.982.nupkg.sha512",
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
+  ],
+  "logs": []
+}

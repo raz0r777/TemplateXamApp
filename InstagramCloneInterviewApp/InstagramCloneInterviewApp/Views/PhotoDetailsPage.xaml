@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InstagramCloneInterviewApp.Views.PhotoDetailsPage"
+             Title="Details">
+<ContentPage.ToolbarItems>
+<ToolbarItem Name="Edit" Clicked="Edit_Clicked"  Order="Primary" Priority="1" Text="Edit"  />
+</ContentPage.ToolbarItems>
+<ContentPage.Content>
+        <StackLayout Padding="10" Orientation="Vertical">
+            <Image x:Name="imageOriginal" Aspect="AspectFit" Source="{Binding SelectedPhoto.Url}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer  Tapped="TapGestureRecognizerImageFullSize">
+                    </TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="Title:" FontSize="Body" FontAttributes="Bold"></Label>
+            <Label Text="{Binding SelectedPhoto.Title}"></Label>
+            <Button Command="{Binding LoadDeleteImageCommand}" BackgroundColor="#3498DB" TextColor="White" Text="Delete"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
