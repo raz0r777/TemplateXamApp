@@ -1,4 +1,8 @@
-﻿using System;
+﻿using InstagramCloneInterviewApp.Models;
+using InstagramCloneInterviewApp.ViewModels;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,11 +11,22 @@ namespace InstagramCloneInterviewApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DocumentScanningPage : ContentPage
     {
+        DocumentScanningPageViewModel viewModel = new DocumentScanningPageViewModel();
         public DocumentScanningPage()
         {
             InitializeComponent();
+            BindingContext = viewModel;
+            MessagingCenter.Subscribe<Object, ObservableCollection<Stream>>(this, "ScannedDocs", (args, images) =>
+            {
+                foreach (var element in images)
+                {
+                    ScannedImage img = new ScannedImage();
+                    element.Position = 0;
+                    img.ImageData = element;
+                    viewModel.ScannedImages.Add(img);
+                }
+            });
         }
-
         private void ScanDocumentButtonClicked(object sender, EventArgs e)
         {
             try
