@@ -49,7 +49,7 @@ namespace InstagramCloneInterviewApp.iOS
 
         public override void ViewDidLoad()
         {
-            View = new UniversalView();
+            //View = new UniversalView();
             base.ViewDidLoad();
             // Perform any additional setup after loading the view
         }
