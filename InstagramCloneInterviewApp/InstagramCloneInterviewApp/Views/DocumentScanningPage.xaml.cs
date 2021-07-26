@@ -16,25 +16,18 @@ namespace InstagramCloneInterviewApp.Views
         {
             InitializeComponent();
             BindingContext = viewModel;
-            MessagingCenter.Subscribe<Object, ObservableCollection<Stream>>(this, "ScannedDocs", (args, images) =>
-            {
-                foreach (var element in images)
-                {
-                    ScannedImage img = new ScannedImage();
-                    element.Position = 0;
-                    img.ImageData = element;
-                    viewModel.ScannedImages.Add(img);
-                }
-            });
         }
-        private void ScanDocumentButtonClicked(object sender, EventArgs e)
+        private async void ScanDocumentButtonClicked(object sender, EventArgs e)
         {
             try
             { 
                 if (Device.RuntimePlatform == Device.Android)
-                    Application.Current.MainPage.DisplayAlert("", "AT THIS MOMENT WE DONT SUPPORT THIS FEATURE FOR ANDROID", "OK");
+                    await Application.Current.MainPage.DisplayAlert("", "AT THIS MOMENT WE DONT SUPPORT THIS FEATURE FOR ANDROID", "OK");
                 else
-                    DependencyService.Get<Interfaces.ICameraScanner>().OpenScanCamera();
+                {
+                    var images = await DependencyService.Get<Interfaces.ICameraScanner>().OpenScanCamera();
+                    viewModel.ScannedImages = images;
+                }                 
             }
             catch (Exception ex)
             {

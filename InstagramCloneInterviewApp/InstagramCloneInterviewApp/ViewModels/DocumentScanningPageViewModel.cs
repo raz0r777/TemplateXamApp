@@ -3,14 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Text;
 
 namespace InstagramCloneInterviewApp.ViewModels
 {
-    public class DocumentScanningPageViewModel : BaseViewModel, INotifyPropertyChanged
+    public class DocumentScanningPageViewModel : BaseViewModel
     {
-        private ObservableCollection<ScannedImage> scannedImages;
-        public ObservableCollection<ScannedImage> ScannedImages
+        private ObservableCollection<Stream> scannedImages;
+        public ObservableCollection<Stream> ScannedImages
         {
             get { return scannedImages; }
             set
@@ -25,7 +26,7 @@ namespace InstagramCloneInterviewApp.ViewModels
         }
         public DocumentScanningPageViewModel()
         {
-            ScannedImages = new ObservableCollection<ScannedImage>();
+            ScannedImages = new ObservableCollection<Stream>();
         }
     }
 }
