@@ -16,7 +16,9 @@ namespace InstagramCloneInterviewApp.Helpers
                 Stream ImageData = (Stream)value;
                 ImageData.Position = 0;
 
-                return ImageSource.FromStream(() => ImageData);
+                var a = ImageSource.FromStream(() => ImageData);
+
+                return a;
             }
             else
             {

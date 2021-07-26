@@ -16,11 +16,20 @@
             <StackLayout Padding="10" Grid.Row="0">
                 <Button BackgroundColor="#006BE6" TextColor="White"  CornerRadius="10" Text="SCAN DOCUMENT" Clicked="ScanDocumentButtonClicked"></Button>
             </StackLayout>
+            <!--<CollectionView ItemsSource="{Binding ScannedImages}" Grid.Row="1" BackgroundColor="Blue">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding ImageData}" Aspect="AspectFit" HeightRequest="300" WidthRequest="300"></Image>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+
+
             <ListView x:Name="listViewImages" ItemsSource="{Binding ScannedImages}" Margin="5,5,5,5"  Grid.Row="1" HasUnevenRows="True" VerticalScrollBarVisibility="Always" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Image Source="{Binding ImageData, Converter={StaticResource MyByteToImageSourceConverter}}" Aspect="AspectFit" HeightRequest="300" WidthRequest="300"></Image>
+                            <Image Source="{Binding ImageData}" Aspect="AspectFit" HeightRequest="300" WidthRequest="300"></Image>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

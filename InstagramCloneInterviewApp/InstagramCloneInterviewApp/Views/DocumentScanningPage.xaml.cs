@@ -3,6 +3,7 @@ using InstagramCloneInterviewApp.ViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -26,7 +27,16 @@ namespace InstagramCloneInterviewApp.Views
                 else
                 {
                     var images = await DependencyService.Get<Interfaces.ICameraScanner>().OpenScanCamera();
-                    viewModel.ScannedImages = images;
+
+                    var a = images.Select((x) => new ScannedImage { ImageData = x }).ToList();
+
+                    foreach (var image in a)
+                    {
+                        viewModel.ScannedImages.Add(image);
+                    }
+                    
+
+                    viewModel.Image = a[0].ImageData;
                 }                 
             }
             catch (Exception ex)

@@ -4,11 +4,12 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace InstagramCloneInterviewApp.Interfaces
 {
     public interface ICameraScanner
     {
-        Task<ObservableCollection<Stream>> OpenScanCamera();
+        Task<ObservableCollection<ImageSource>> OpenScanCamera();
     }
 }

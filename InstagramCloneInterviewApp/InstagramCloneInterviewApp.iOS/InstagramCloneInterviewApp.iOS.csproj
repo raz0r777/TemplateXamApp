@@ -27,6 +27,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>iOS Team Provisioning Profile: com.companyname.InstagramCloneInterviewApp</CodesignProvision>
+    <CodesignKey>Apple Development: ivan.djikovski@wsa.com (JUXA96MS89)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -61,6 +63,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CameraScanner.cs" />
@@ -138,7 +141,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\InstagramCloneInterviewApp\InstagramCloneInterviewApp.csproj">
-      <Project>{DD577EBB-22EC-4601-97A7-6D156E4D92B1}</Project>
+      <Project>{09649402-F057-4071-9366-14799DFE1840}</Project>
       <Name>InstagramCloneInterviewApp</Name>
     </ProjectReference>
   </ItemGroup>

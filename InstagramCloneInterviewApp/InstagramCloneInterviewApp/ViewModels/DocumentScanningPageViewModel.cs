@@ -5,13 +5,14 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
+using Xamarin.Forms;
 
 namespace InstagramCloneInterviewApp.ViewModels
 {
     public class DocumentScanningPageViewModel : BaseViewModel
     {
-        private ObservableCollection<Stream> scannedImages;
-        public ObservableCollection<Stream> ScannedImages
+        private ObservableCollection<ScannedImage> scannedImages;
+        public ObservableCollection<ScannedImage> ScannedImages
         {
             get { return scannedImages; }
             set
@@ -24,9 +25,17 @@ namespace InstagramCloneInterviewApp.ViewModels
                 }
             }
         }
+
+        private ImageSource _image;
+        public ImageSource Image
+        {
+            get => _image;
+            set => SetProperty(ref _image, value);
+        }
+
         public DocumentScanningPageViewModel()
         {
-            ScannedImages = new ObservableCollection<Stream>();
+            ScannedImages = new ObservableCollection<ScannedImage>();
         }
     }
 }

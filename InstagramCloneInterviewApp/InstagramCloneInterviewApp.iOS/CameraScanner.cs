@@ -18,12 +18,39 @@ namespace InstagramCloneInterviewApp.iOS
 { 
     public class CameraScanner : ICameraScanner
     {
-        public static TaskCompletionSource<ObservableCollection<Stream>> taskCompletionSource;
-        public Task<ObservableCollection<Stream>> OpenScanCamera()
+        private TaskCompletionSource<ObservableCollection<ImageSource>> taskCompletionSource;
+
+        public Task<ObservableCollection<ImageSource>> OpenScanCamera()
         {
-            taskCompletionSource = new TaskCompletionSource<ObservableCollection<Stream>>();
+            taskCompletionSource = new TaskCompletionSource<ObservableCollection<ImageSource>>();
             var documentCameraViewController = new VNDocumentCameraViewController();
-            documentCameraViewController.Delegate = new DocumentDelegate();
+
+            var documentscanDelegate = new DocumentDelegate();
+
+            documentscanDelegate.OnScanTaken += (VNDocumentCameraScan scan) =>
+            {
+                ObservableCollection<ImageSource> images = new ObservableCollection<ImageSource>();
+
+                for (int i = 0; i < Convert.ToInt32(scan.PageCount); i++)
+                {
+                    var stream = scan.GetImage((uint)i).AsPNG().AsStream();
+                    stream.Position = 0;
+                    images.Add(ImageSource.FromStream(() => stream));
+                }
+
+                documentCameraViewController.DismissViewController(true, null);
+                Debug.WriteLine($"{scan.PageCount} Pages!");
+
+                taskCompletionSource.SetResult(images);
+            };
+
+            documentscanDelegate.OnCanceled += () =>
+            {
+                documentCameraViewController.DismissViewController(true, null);
+            };
+
+            documentCameraViewController.ModalPresentationStyle = UIModalPresentationStyle.OverFullScreen;
+            documentCameraViewController.Delegate = documentscanDelegate;
             UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(documentCameraViewController, true, null);
             return taskCompletionSource.Task;
         }
@@ -49,12 +76,6 @@ namespace InstagramCloneInterviewApp.iOS
             {
                 Debug.WriteLine("DocumentScanDelegate:DidFinish");
                 OnScanTaken(scan);
-
-                for (int i = 0; i < Convert.ToInt32(scan.PageCount); i++)
-                {
-                    images.Add(scan.GetImage((uint)i).AsPNG().AsStream());
-                }
-                CameraScanner.taskCompletionSource.SetResult(images);
             }
             catch (Exception ex)
             {
